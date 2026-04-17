@@ -2,7 +2,6 @@ import json
 from typing import Dict, Any, Protocol, runtime_checkable
 from requests import Response
 from src.task import Task
-import random
 import requests
 
 @runtime_checkable
@@ -37,10 +36,10 @@ class ClientGet:
             data: Dict[str, Any] = {}
             response: Response = requests.get(self.path)
             try:
-                data["data"] = response.json()
+                data["data"] = response.json().get('metadata').get('timezone_abbrevation')
             except Exception:
                 data["data"] = response.text
-            task: Task = Task(random.randint(10000, 99999),'description', data,random.randint(1, 2))
+            task: Task = Task(len(str(data["data"])),'description',data, (len(str(data["data"]))%2)+1)
             return task
         except Exception:
             return None
@@ -66,10 +65,10 @@ class ClientPost:
             data: Dict[str, Any] = {}
             response = requests.post(self.path, data=json.dumps(self.message))
             try:
-                data["data"] = response.json()
+                data["data"] = response.json().get('metadata').get('timezone_abbrevation')
             except Exception:
                 data["data"] = response.text
-            task: Task = Task(random.randint(10000, 99999),'description', data,random.randint(1, 2))
+            task: Task = Task( (len(str(data["data"]))),'description',data, ((len(str(data["data"]))%2)+1))
             return task
         except Exception:
             return None

@@ -10,11 +10,11 @@ def test_source_from_web():
     client1 = Client("https://ru.wikipedia.org/wiki/Python")
     client2 = Client("fcghvjbknjlm;")
 
-    sff1:SourceFromWeb = SourceFromWeb(client1,seed=555)
-    sff2:SourceFromWeb = SourceFromWeb(client1,seed=555)
+    sff1:SourceFromWeb = SourceFromWeb(client1)
+    sff2:SourceFromWeb = SourceFromWeb(client1)
     sff3:SourceFromWeb = SourceFromWeb(client2)
 
-    assert len(sff1.get_tasks())!=0
-    assert len(sff2.get_tasks())!=0
-    assert sff1.get_tasks()[0].id==sff2.get_tasks()[0].id
+    assert len(list(sff1.get_tasks()))!=0
+    assert len(list(sff2.get_tasks()))!=0
+    assert list(sff1.get_tasks())[0].id==list(sff2.get_tasks())[0].id
     assert None in sff3.get_tasks()

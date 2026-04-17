@@ -34,12 +34,18 @@ def main() -> None:
 
     tq = TaskQueue(source_from_web1)
 
+    for el in list(tq):
+        print(el)
+    print('second time')
+    for el in list(tq):
+        print(el)
     for el in list(tq.filtration(filter_by_status)):
         print(el)
 
     sum_of_priority: int = sum(el.priority for el in tq)
+    sum_of_priority1: int = sum(el.priority for el in tq)
 
-    print(sum_of_priority)
+    print(sum_of_priority,sum_of_priority1)
 
     print("Tasks from web:")
 
