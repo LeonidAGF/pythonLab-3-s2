@@ -3,6 +3,8 @@ from SourceFromGenerator import SourceFromGenerator
 from SourceFromWeb import SourceFromWeb
 from client import ClientGet as Client, ClientPost
 from task_manager import task_manager
+from task_queue import TaskQueue
+
 
 def main() -> None:
     """
@@ -19,10 +21,14 @@ def main() -> None:
     source_from_file = SourceFromFile("text")
     source_from_generators = SourceFromGenerator(1)
 
-    print("Tasks from web:")
+    print("Tasks from web queue:")
 
-    for el in task_manager(source_from_web1):
+    tq = TaskQueue(source_from_web1)
+
+    for el in tq:
         print(el)
+
+    print("Tasks from web:")
 
     for el in task_manager(source_from_web2):
         print(el)
