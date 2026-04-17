@@ -19,6 +19,7 @@
         │   ├── task_manager.py                # файл содержащий функцию, которая получает таски из любого источника, ведущего себя
         │   ├── descriptors.py                 # файл содержащий дескрипторы
         │   ├── errors.py                      # файл содержащий ошибки, которые возвращают дескрипторы
+        │   ├── task_queue.py                  # файл реализацию TaskQueue
     │   ├── tests/                             # Unit тесты
         │   ├── test_task.py                   # тесты для Task
         │   ├── test_cat_function.py           # тесты для cat_function
@@ -27,6 +28,7 @@
         │   ├── test_source_from_generator.py  # тесты для source_from_generator
         │   ├── test_source_from_web.py        # тесты для source_from_web
         │   ├── test_task_manager.py           # тесты для task_manager
+        │   ├── test_task_queue.py             # тесты для TaskQueue
     │   ├── requirements.txt                   # зависимости вашего проекта
     │   ├── report.pdf                         # Отчет
     │   ├── .gitignore                         # git ignore файл
@@ -58,5 +60,5 @@
 
 <h2>Что было реализованно</h2>
 
-- `Была реализована модель Task`
-- `Платформа обработки задач была взята из первой лабораторной работы`
+- `Была создан класс TaskQueue`
+- `Платформа обработки задач была взята из второй лабораторной работы`
