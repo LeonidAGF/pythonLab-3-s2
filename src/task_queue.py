@@ -1,7 +1,8 @@
-from typing import Iterator, Callable
+from typing import Callable, Generator
 
 from src.Source import TaskSource
 from src.task import Task
+from task import Task
 
 
 class TaskQueue:
@@ -15,15 +16,19 @@ class TaskQueue:
         """
         self.source: TaskSource = source
 
-    def __iter__(self) -> Iterator[Task]:
+    def __iter__(self) -> Generator[Task]:
         """
             функция для итерации по задачам из источника
         """
+        itr = iter(self.source.get_tasks())
+        while True:
+            try:
+                item = next(itr)
+                yield item
+            except StopIteration:
+                break
 
-        for task in self.source.get_tasks():
-            yield task
-
-    def filtration(self, func: Callable[[Task], bool]) -> Iterator[Task]:
+    def filtration(self, func: Callable[[Task], bool]) -> Generator[Task]:
         """
             функция реализующая ленивый фильтр
         """
