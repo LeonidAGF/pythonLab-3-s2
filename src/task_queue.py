@@ -1,4 +1,4 @@
-from typing import Callable, Generator
+from typing import Callable, Generator, Iterator
 
 from src.Source import TaskSource
 from src.task import Task
@@ -16,7 +16,7 @@ class TaskQueue:
         """
         self.source: TaskSource = source
 
-    def __iter__(self) -> Generator[Task]:
+    def __iter__(self) -> Iterator[Task]:
         """
             функция для итерации по задачам из источника
         """
